@@ -1,15 +1,15 @@
-= Pdfjs
+# Pdfjs
 
 Makes pdfjs conform to the directory structure required by the Rails asset pipeline.
 
-== Installing
+## Installing
 
 Just chuck it in your Gemfile:
 ```
 gem 'pdfjs', :git => "https://github.com/onehub/pdfjs"
 ```
 
-== Updating
+## Updating
 
 All assets from the pdf.js project are included. To update these assets:
 
