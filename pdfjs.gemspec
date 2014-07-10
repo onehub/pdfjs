@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Pdfjs::VERSION
   s.authors     = ["Leigh Caplan"]
   s.email       = ["lcaplan@onehub.com"]
-  s.homepage    = "github.com/onehub/pdfjs"
+  s.homepage    = "https://github.com/onehub/pdfjs"
   s.summary     = "Package pdfjs for your Rails apps."
   s.description = "Package pdfjs for your Rails apps."
   s.license     = "MIT"
