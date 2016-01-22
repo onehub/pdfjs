@@ -4037,6 +4037,7 @@ var PDFPageView = (function PDFPageViewClosure() {
     },
 
     beforePrint: function PDFPageView_beforePrint() {
+      // There are fixes for IE from: https://github.com/mozilla/pdf.js/issues/3983
       var pdfPage = this.pdfPage;
 
       var viewport = pdfPage.getViewport(1);
@@ -4050,18 +4051,32 @@ var PDFPageView = (function PDFPageViewClosure() {
       canvas.height = Math.floor(viewport.height) * PRINT_OUTPUT_SCALE;
 
       // The rendered size of the canvas, relative to the size of canvasWrapper.
-      canvas.style.width = (PRINT_OUTPUT_SCALE * 100) + '%';
-      canvas.style.height = (PRINT_OUTPUT_SCALE * 100) + '%';
+      if(bowser.msie) {
+        canvas.style.width = (PRINT_OUTPUT_SCALE/2 * 100) + '%';
+        canvas.style.height = (PRINT_OUTPUT_SCALE/2 * 100) + '%';
+        var cssScale = 'scale(' + (PRINT_OUTPUT_SCALE/2) + ', ' +(PRINT_OUTPUT_SCALE/2) + ')';
+      } else {
+        canvas.style.width = (PRINT_OUTPUT_SCALE * 100) + '%';
+        canvas.style.height = (PRINT_OUTPUT_SCALE * 100) + '%';
+        var cssScale = 'scale(' + (1 / PRINT_OUTPUT_SCALE) + ', ' +
+                                  (1 / PRINT_OUTPUT_SCALE) + ')';
+      }
 
-      var cssScale = 'scale(' + (1 / PRINT_OUTPUT_SCALE) + ', ' +
-                                (1 / PRINT_OUTPUT_SCALE) + ')';
       CustomStyle.setProp('transform' , canvas, cssScale);
       CustomStyle.setProp('transformOrigin' , canvas, '0% 0%');
 
       var printContainer = document.getElementById('printContainer');
       var canvasWrapper = document.createElement('div');
-      canvasWrapper.style.width = viewport.width + 'pt';
-      canvasWrapper.style.height = viewport.height + 'pt';
+
+      if(bowser.msie) {
+        canvasWrapper.width = canvas.width;
+        canvasWrapper.height = canvas.height;
+      } else {
+        canvasWrapper.style.width = viewport.width + 'pt';
+        canvasWrapper.style.height = viewport.height + 'pt';
+      }
+
+
       canvasWrapper.appendChild(canvas);
       printContainer.appendChild(canvasWrapper);
 
@@ -7956,4 +7971,3 @@ window.addEventListener('afterprint', function afterPrint(evt) {
     window.requestAnimationFrame(resolve);
   });
 })();
-
