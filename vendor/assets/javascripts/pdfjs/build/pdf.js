@@ -1673,7 +1673,7 @@ function loadJpegStream(id, imageUrl, objs) {
 }
 
 
-var DEFAULT_RANGE_CHUNK_SIZE = 65536; // 2^16 = 65536
+var DEFAULT_RANGE_CHUNK_SIZE = 1048576; // 1 megabyte (1024^2)
 
 /**
  * The maximum allowed image size in total pixels e.g. width * height. Images
