@@ -10315,7 +10315,6 @@ var PDFWorker = function PDFWorkerClosure() {
   }
 
   function _getWorkerSrc() {
-    console.log("sdfdsfdsf");
     if (_worker_options.GlobalWorkerOptions.workerSrc) {
       return _worker_options.GlobalWorkerOptions.workerSrc;
     }
@@ -10336,7 +10335,6 @@ var PDFWorker = function PDFWorkerClosure() {
 
     try {
       var _globalThis$pdfjsWork;
-
       mainWorkerMessageHandler = (_globalThis$pdfjsWork = globalThis.pdfjsWorker) === null || _globalThis$pdfjsWork === void 0 ? void 0 : _globalThis$pdfjsWork.WorkerMessageHandler;
     } catch (ex) {}
 

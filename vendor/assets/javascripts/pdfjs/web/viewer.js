@@ -212,6 +212,10 @@ var defaultOptions = {
   workerSrc: {
     value: "../build/pdf.worker.js",
     kind: OptionKind.WORKER
+  },
+  sandboxBundleSrc: {
+    value: "../build/pdf.sandbox.js",
+    kind: OptionKind.VIEWER
   }
 }
 {
@@ -221,10 +225,6 @@ var defaultOptions = {
   };
   defaultOptions.locale = {
     value: typeof navigator !== "undefined" ? navigator.language : "en-US",
-    kind: OptionKind.VIEWER
-  };
-  defaultOptions.sandboxBundleSrc = {
-    value: "../build/pdf.sandbox.js",
     kind: OptionKind.VIEWER
   };
   defaultOptions.renderer.kind += OptionKind.PREFERENCE;
@@ -2396,7 +2396,6 @@ var PDFViewerApplication = {
     this.pdfRenderingQueue.renderHighestPriority();
   },
   beforePrint: function beforePrint() {
-    console.log("yayyyyy");
     var _this21 = this;
 
     this.pdfScriptingManager.dispatchWillPrint();
