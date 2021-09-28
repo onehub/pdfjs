@@ -530,7 +530,9 @@ var WorkerMessageHandler = /*#__PURE__*/function () {
         return pdfManager.ensureCatalog("javaScript");
       });
       handler.on("GetDocJSActions", function wphSetupGetDocJSActions(data) {
-        return pdfManager.ensureCatalog("jsActions");
+        // JS actions can be added to PDFs that this function then executes.
+        // Returning null keeps PDF.js from exectuting any JS actions inside the previewer
+        return null;
       });
       handler.on("GetPageJSActions", function (_ref6) {
         var pageIndex = _ref6.pageIndex;
