@@ -9383,7 +9383,6 @@ var PDFDocumentProxy = /*#__PURE__*/function () {
   }, {
     key: "getJavaScript",
     value: function getJavaScript() {
-      console.log("got javascript");
       return this._transport.getJavaScript();
     }
   }, {

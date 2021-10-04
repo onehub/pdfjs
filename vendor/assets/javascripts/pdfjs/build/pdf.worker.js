@@ -527,7 +527,9 @@ var WorkerMessageHandler = /*#__PURE__*/function () {
         return pdfManager.ensureCatalog("attachments");
       });
       handler.on("GetJavaScript", function wphSetupGetJavaScript(data) {
-        return pdfManager.ensureCatalog("javaScript");
+        // JS can be added to PDFs that this function then executes.
+        // Returning null keeps PDF.js from exectuting any JS inside the previewer
+        return null;
       });
       handler.on("GetDocJSActions", function wphSetupGetDocJSActions(data) {
         // JS actions can be added to PDFs that this function then executes.
