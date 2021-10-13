@@ -1,3 +1,5 @@
+# This file is currently outdated, please compare folder structure of the latest PDF.js version before using this file in an upgrade
+
 begin
   require 'bundler/setup'
 rescue LoadError
