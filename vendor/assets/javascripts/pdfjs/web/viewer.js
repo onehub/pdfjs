@@ -9164,7 +9164,7 @@ var PDFLinkService = /*#__PURE__*/function () {
       var destRef = explicitDest[0];
       var pageNumber;
 
-      if (destRef instanceof Object) {
+      if (typeof destRef === "object" && destRef !== null) {
         pageNumber = this._cachedPageNumber(destRef);
 
         if (pageNumber === null) {
